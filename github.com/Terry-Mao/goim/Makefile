@@ -14,6 +14,6 @@ build:
 	$(GOBUILD) -o target/job${prifix} cmd/job/main.go
 
 run:
-	nohup target/logic${prifix} -conf=./logic.toml 2>&1 > target/logic.log &
-	nohup target/comet${prifix} -conf=./comet.toml 2>&1 > target/comet.log &
-	nohup target/job${prifix} -conf=./job.toml  2>&1 > target/job.log &
+	nohup target/logic${prifix} -conf=target/logic.toml 2>&1 > target/logic.log &
+	nohup target/comet${prifix} -conf=target/comet.toml 2>&1 > target/comet.log &
+	nohup target/job${prifix} -conf=target/job.toml  2>&1 > target/job.log &
