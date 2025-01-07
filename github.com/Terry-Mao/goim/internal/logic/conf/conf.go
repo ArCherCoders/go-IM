@@ -1,6 +1,7 @@
 package conf
 
 import (
+	"flag"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
 	"time"
 
@@ -23,13 +24,7 @@ var (
 )
 
 func init() {
-	confPath = "target\\logic.toml"
-	//region = "sh"
-	//zone = "sh001"
-	//deployEnv = "dev"
-	//host = "192.168.31.77"
-	//weight = 10
-
+	flag.StringVar(&confPath, "conf", "comet-example.toml", "default config path")
 }
 
 // Init init config.

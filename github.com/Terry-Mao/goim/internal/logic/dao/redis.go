@@ -180,6 +180,7 @@ func (d *Dao) KeysByMids(c context.Context, mids []int64) (ress map[string]strin
 			return
 		}
 		if len(res) > 0 {
+			olMids = make([]int64, 0)
 			olMids = append(olMids, mids[idx])
 		}
 		for k, v := range res {

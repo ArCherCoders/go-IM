@@ -35,10 +35,8 @@ type Logic struct {
 // New init
 func New(c *conf.Config) (l *Logic) {
 	l = &Logic{
-		c:   c,
-		dao: dao.New(c),
-		//dis: naming.New(c.Discovery),
-		//loadBalancer: NewLoadBalancer(),
+		c:       c,
+		dao:     dao.New(c),
 		regions: make(map[string]string),
 	}
 	//l.initRegions()

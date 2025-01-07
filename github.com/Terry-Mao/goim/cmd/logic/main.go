@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
 	"net"
@@ -24,15 +25,13 @@ const (
 )
 
 func main() {
-	//flag.Parse()
+	flag.Parse()
 	if err := conf.Init(); err != nil {
 		panic(err)
 	}
-
 	// logic
 	srv := logic.New(conf.Conf)
 
-	//http://:3111/goim/push/mids?operation=1000&mids=123
 	httpSrv := http.New(conf.Conf.HTTPServer, srv)
 
 	rpcSrv := grpc.New(conf.Conf.RPCServer, srv)

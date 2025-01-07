@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"os"
 	"os/signal"
 	"syscall"
@@ -15,16 +16,12 @@ var (
 )
 
 func main() {
-
-	//flag.Parse()
+	flag.Parse()
 	if err := conf.Init(); err != nil {
 		panic(err)
 	}
 	log.Infof("goim-job [version: %s env: %+v] start", ver, conf.Conf.Env)
-	// grpc register naming
-	//dis := naming.New(conf.Conf.Discovery)
-	//resolver.Register(dis)
-	// job
+
 	j := job.New(conf.Conf)
 	go j.Consume()
 
