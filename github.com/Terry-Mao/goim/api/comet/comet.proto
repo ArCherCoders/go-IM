@@ -46,37 +46,8 @@ service Comet {
     rpc Rooms(RoomsReq) returns (RoomsReply);
 }
 
-// 应生成
-
-//type CometServer interface {
-//// PushMsg push by key or mid
-//PushMsg(context.Context, *PushMsgReq) (*PushMsgReply, error)
-//// Broadcast send to every enrity
-//Broadcast(context.Context, *BroadcastReq) (*BroadcastReply, error)
-//// BroadcastRoom broadcast to one room
-//BroadcastRoom(context.Context, *BroadcastRoomReq) (*BroadcastRoomReply, error)
-//// Rooms get all rooms
-//Rooms(context.Context, *RoomsReq) (*RoomsReply, error)
-//}
 
 
-//type CometService struct { 实现 GreeterServer 所有的方法就是相当于继承 GreeterServer
-//
-//}
 
-//port := ":6666"
-//l, err := net.Listen("tcp", port)
-//if err != nil {
-//log.Fatalf("端口监听错误 : %v\n", err)
-//}
-//fmt.Printf("正在监听： %s 端口\n", port)
-//
-//
-//s:=grpc.NewServer()
-//
-// 注册  grpc.NewServer(),  ProductService(实现 GreeterServer 所有的方法就是相当于继承 GreeterServer)
-//services.RegisterCometServer(s,&services.CometService{})
-//
-//s.Serve(l)
 
 
