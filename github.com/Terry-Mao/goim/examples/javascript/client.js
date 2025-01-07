@@ -31,7 +31,7 @@
         var textEncoder = new TextEncoder();
         var heartbeatInterval;
         function connect() {
-            var ws = new WebSocket('ws://192.168.11.1:3102/sub');
+            var ws = new WebSocket('ws://192.168.10.200:3102/sub');
             // var ws = new WebSocket('ws://127.0.0.1:3102/sub');
             ws.binaryType = 'arraybuffer';
             ws.onopen = function() {
@@ -110,7 +110,7 @@
             }
 
             function auth() {
-                var token = '{"mid":123, "room_id":"live://1000", "platform":"web", "accepts":[1000,1001,1002]}'
+                var token = '{"mid":456, "room_id":"live://1000", "platform":"web", "accepts":[1000,1001,1002]}'
                 var headerBuf = new ArrayBuffer(rawHeaderLen);
                 var headerView = new DataView(headerBuf, 0);
                 var bodyBuf = textEncoder.encode(token);

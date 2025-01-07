@@ -1,7 +1,6 @@
 package comet
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -18,7 +17,6 @@ type Whitelist struct {
 
 // InitWhitelist a whitelist struct.
 func InitWhitelist(c *conf.Whitelist) (err error) {
-	fmt.Println("______________",c.WhiteLog)
 	var (
 		mid int64
 		f   *os.File
