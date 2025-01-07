@@ -17,3 +17,7 @@ run:
 	nohup target/logic${prifix} -conf=target/logic.toml 2>&1 > target/logic.log &
 	nohup target/comet${prifix} -conf=target/comet.toml 2>&1 > target/comet.log &
 	nohup target/job${prifix} -conf=target/job.toml  2>&1 > target/job.log &
+stop:
+	pkill -f target/logic
+	pkill -f target/job
+	pkill -f target/comet
