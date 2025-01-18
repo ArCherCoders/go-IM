@@ -118,9 +118,9 @@ func (s *Server) Bucket(subKey string) *Bucket {
 
 // RandServerHearbeat rand server heartbeat. 10-//30分钟之内的随机时间
 func (s *Server) RandServerHearbeat() time.Duration {
-	fmt.Println("RandServerHearbeat=maxServerHeartbeat-minServerHeartbeat", int64(maxServerHeartbeat-minServerHeartbeat))
-	fmt.Println("RandServerHearbeat=rand.Int63n", rand.Int63n(int64(maxServerHeartbeat-minServerHeartbeat)))
-	fmt.Println("RandServerHearbeat=time.Duration", minServerHeartbeat+time.Duration(rand.Int63n(int64(maxServerHeartbeat-minServerHeartbeat))))
+	//fmt.Println("RandServerHearbeat=maxServerHeartbeat-minServerHeartbeat", int64(maxServerHeartbeat-minServerHeartbeat))
+	//fmt.Println("RandServerHearbeat=rand.Int63n", rand.Int63n(int64(maxServerHeartbeat-minServerHeartbeat)))
+	//fmt.Println("RandServerHearbeat=time.Duration", minServerHeartbeat+time.Duration(rand.Int63n(int64(maxServerHeartbeat-minServerHeartbeat))))
 	return (minServerHeartbeat + time.Duration(rand.Int63n(int64(maxServerHeartbeat-minServerHeartbeat))))
 }
 

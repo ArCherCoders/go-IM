@@ -36,7 +36,9 @@ func main() {
 
 	rpcSrv := grpc.New(conf.Conf.RPCServer, srv)
 
-	cancel := register(srv)
+	cancel := registerRpc(srv)
+
+	cancel = registerHttp(srv)
 
 	// 优雅关机
 
@@ -64,7 +66,7 @@ func main() {
 	}
 }
 
-func register(srv *logic.Logic) context.CancelFunc {
+func registerRpc(srv *logic.Logic) context.CancelFunc {
 	_, cancel := context.WithCancel(context.Background())
 
 	addr := ip.InternalIP()
@@ -84,6 +86,45 @@ func register(srv *logic.Logic) context.CancelFunc {
 		Ip:          addr,
 		Port:        parseport,
 		ServiceName: appid,
+		Weight:      10,
+		Enable:      true,
+		Healthy:     true,
+		Ephemeral:   true,
+		ClusterName: "DEFAULT",       // default value is DEFAULT
+		GroupName:   "DEFAULT_GROUP", // default value is DEFAULT_GROUP
+	}
+
+	success, err := namingClient.RegisterInstance(instances)
+	if err != nil {
+		panic(err)
+		return cancel
+	}
+	if !success {
+		log.Infof("register instance fail, success=%+v", success)
+	}
+	return cancel
+}
+
+func registerHttp(srv *logic.Logic) context.CancelFunc {
+	_, cancel := context.WithCancel(context.Background())
+
+	addr := ip.InternalIP()
+	_, port, _ := net.SplitHostPort(conf.Conf.HTTPServer.Addr)
+
+	parseport, err := strconv.ParseUint(port, 10, 64)
+	if err != nil {
+		log.Errorf("ip parse port error, err=%+v", err)
+	}
+
+	namingClient, err := clients.NewNamingClient(vo.NacosClientParam{
+		ClientConfig:  conf.Conf.ClientConfg,
+		ServerConfigs: conf.Conf.ServerConfig,
+	})
+
+	instances := vo.RegisterInstanceParam{
+		Ip:          addr,
+		Port:        parseport,
+		ServiceName: "goim.logic.http",
 		Weight:      10,
 		Enable:      true,
 		Healthy:     true,
