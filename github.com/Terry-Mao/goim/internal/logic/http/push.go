@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 
 	"github.com/gin-gonic/gin"
+	log "github.com/golang/glog"
 )
 
 func (s *Server) pushKeys(c *gin.Context) {
@@ -22,6 +23,7 @@ func (s *Server) pushKeys(c *gin.Context) {
 		errors(c, RequestErr, err.Error())
 		return
 	}
+	log.Infof("arg=%v,msg=%v", arg, msg)
 	if err = s.logic.PushKeys(context.TODO(), arg.Op, arg.Keys, msg); err != nil {
 		result(c, nil, RequestErr)
 		return
